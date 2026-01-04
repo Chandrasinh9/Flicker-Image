@@ -6,7 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import { View, StyleSheet } from 'react-native';
-import DrawerNavigator from './src/navigation/DrawerNavigator';
+import AppNavigator from './src/navigation/AppNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Keep the splash screen visible while we fetch resources
@@ -47,7 +47,7 @@ export default function App() {
         <View style={styles.container} onLayout={onLayoutRootView}>
           <NavigationContainer>
             <StatusBar style="auto" />
-            <DrawerNavigator />
+            <AppNavigator />
           </NavigationContainer>
         </View>
       </SafeAreaProvider>

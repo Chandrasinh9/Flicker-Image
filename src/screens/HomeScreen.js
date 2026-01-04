@@ -9,7 +9,6 @@ import {
   RefreshControl,
   ActivityIndicator
 } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { fetchImages, isOnline } from '../services/api';
 import { getCachedImages, cacheImages, shouldUpdateCache } from '../storage/cache';
@@ -147,37 +146,35 @@ const HomeScreen = () => {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <FlatList
-          data={images}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => `image-${index}`}
-          contentContainerStyle={styles.list}
-          showsVerticalScrollIndicator={false}
-          ListHeaderComponent={renderHeader}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={['#2196F3']}
-              tintColor="#2196F3"
-            />
-          }
-          ListEmptyComponent={
-            <View style={styles.emptyContainer}>
-              <MaterialIcons name="image-not-supported" size={50} color="#ccc" />
-              <Text style={styles.emptyText}>
-                {isConnected ? 'No images available' : 'No cached images available'}
-              </Text>
-              <Text style={styles.emptySubText}>
-                {isConnected ? 'Pull to refresh' : 'Connect to the internet to load images'}
-              </Text>
-            </View>
-          }
-        />
-      </View>
-    </GestureHandlerRootView>
+    <View style={styles.container}>
+      <FlatList
+        data={images}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => `image-${index}`}
+        contentContainerStyle={styles.list}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={renderHeader}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#2196F3']}
+            tintColor="#2196F3"
+          />
+        }
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <MaterialIcons name="image-not-supported" size={50} color="#ccc" />
+            <Text style={styles.emptyText}>
+              {isConnected ? 'No images available' : 'No cached images available'}
+            </Text>
+            <Text style={styles.emptySubText}>
+              {isConnected ? 'Pull to refresh' : 'Connect to the internet to load images'}
+            </Text>
+          </View>
+        }
+      />
+    </View>
   );
 };
 
